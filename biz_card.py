@@ -8,7 +8,7 @@ import pandas as pd
 import numpy as np
 import re
 import io
-import sqlite3
+import pymysql
 
 
 def image_to_text(path):
@@ -121,7 +121,7 @@ elif select == "Upload & Modifying":
 
     if button_1:
 
-      mydb = sqlite3.connect("bizcardx.db")
+      mydb = pymysql.connect(host="localhost", user="root", password="mohanram0305", database="bizcardx.db", port=3306, cursorclass=pymysql.cursors.DictCursor)
       cursor = mydb.cursor()
 
       #Table Creation
@@ -159,7 +159,7 @@ elif select == "Upload & Modifying":
 
   if method == "Preview":
 
-    mydb = sqlite3.connect("bizcardx.db")
+    mydb = pymysql.connect(host="localhost", user="root", password="mohanram0305", database="bizcardx.db", port=3306, cursorclass=pymysql.cursors.DictCursor)
     cursor = mydb.cursor()
 
     #select query
@@ -175,7 +175,7 @@ elif select == "Upload & Modifying":
 
   elif method == "Modify":
 
-    mydb = sqlite3.connect("bizcardx.db")
+    mydb = pymysql.connect(host="localhost", user="root", password="mohanram0305", database="bizcardx.db", port=3306, cursorclass=pymysql.cursors.DictCursor)
     cursor = mydb.cursor()
 
     #select query
@@ -231,7 +231,7 @@ elif select == "Upload & Modifying":
 
     if button_3:
 
-      mydb = sqlite3.connect("bizcardx.db")
+      mydb = pymysql.connect(host="localhost", user="root", password="mohanram0305", database="bizcardx.db", port=3306, cursorclass=pymysql.cursors.DictCursor)
       cursor = mydb.cursor()
 
       cursor.execute(f"DELETE FROM bizcard_details WHERE NAME = '{selected_name}'")
@@ -254,7 +254,7 @@ elif select == "Upload & Modifying":
 
 elif select == "Delete":
   
-  mydb = sqlite3.connect("bizcardx.db")
+  mydb = pymysql.connect(host="localhost", user="root", password="mohanram0305", database="bizcardx.db", port=3306, cursorclass=pymysql.cursors.DictCursor)
   cursor = mydb.cursor()
 
   col1,col2 = st.columns(2)
@@ -312,4 +312,3 @@ elif select == "Delete":
         mydb.commit()
 
         st.warning("DELETED")
-
